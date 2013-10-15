@@ -37,7 +37,7 @@ You can request our offers from Adventize servers by HTTP protocol, using GET me
 
 The formula generates your secret parameter:
 
-    sha1(secret_word + [concatenation of all the request parameters, sorted by name in alphabetical order]);
+    sha1(secret_word + [concatenation of all the request parameters (names and values), sorted by name in alphabetical order]);
 
 Where `secret_word` – is the parameter that you will get from your Adventize account manager.
 
@@ -47,7 +47,7 @@ You request Adventize server with following parameter: `app_id` – 3245657866, 
 
 The secret parameter will be:
 
-    sha1(secret_word + "m5f94jf8693hfh" + "3245657866" + "android-tablet" + "1378182410");
+    sha1(secret_word + "android_idm5f94jf8693hfh" + "app_id3245657866" + "device_typeandroid-tablet" + "timestamp1378182410");
     
 ###### PHP impletemtation
 
@@ -56,7 +56,7 @@ The secret parameter will be:
         sort($keys);
         $sign = $secret_word;
         foreach ($keys as $key) {
-            $sign .= $key . (isset($params[$key]) ? $params[$key] : "");
+            $sign .= $key . $params[$key];
         }
         return sha1($sign);
     }
