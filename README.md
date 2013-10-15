@@ -141,10 +141,9 @@ The error response from the server is any response with status code other then 2
 
 **410** – Gone. Offer has expired.
 
-**50x** – Adventize server error. We apologize for those. 
-If the Content-Type header is set to text/html, then the server will response with proper HTML-page.
+**50x** – Adventize server error. We apologize for those.
 
-In all cases the server will reply in JSON format: 
+If the `Content-Type` header is set to `text/html`, then the server will response with proper HTML-page. In all other cases the server will reply in JSON format:
 
     {"status": "error", "message": "[error message]"}
     
