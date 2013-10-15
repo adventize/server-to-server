@@ -11,13 +11,13 @@ You can request our offers from Adventize servers by HTTP protocol, using GET me
  `app_id`     |String |Both    |Yes
  `timestamp`  |Integer|Both    |Yes 
  `secret`     |String |Both    |Yes
- `idfa`       |String |Both    |No
- `android_id` |String |Both    |Yes
+ `idfa`       |String |iOS     |No
+ `android_id` |String |Android |No
  `open_udid`  |String |Both    |Yes
  `udid`       |String |Both    |No
  `imei`       |String |Both    |No
  `mac`        |String |Both    |No
- `serial`     |String |Both    |No
+ `serial`     |String |Android |No
  `ip`         |String |Both    |Yes
  `device_type`|String |Both    |Yes
  `internet`   |String |Both    |Yes
@@ -43,11 +43,11 @@ Where `secret_word` – is the parameter that you will get from your Adventize a
 
 ###### Example
 
-You request Adventize server with following parameter: `app_id` – 3245657866, `timestamp` – 1378182410, `android_id` – m5f94jf8693hfh, `device_type` – android-tablet.
+You request Adventize server with following parameter: `app_id` – 3245657866, `timestamp` – 1378182410, `open_udid` – m5f94jf8693hfh, `device_type` – android-tablet.
 
 The secret parameter will be:
 
-    sha1(secret_word + "android_idm5f94jf8693hfh" + "app_id3245657866" + "device_typeandroid-tablet" + "timestamp1378182410");
+    sha1(secret_word + "app_id" + "3245657866" + "device_type" + "android-tablet" + "open_udid" + "m5f94jf8693hfh" + "timestamp" + "1378182410");
     
 ###### PHP impletemtation
 
@@ -56,7 +56,9 @@ The secret parameter will be:
         sort($keys);
         $sign = $secret_word;
         foreach ($keys as $key) {
-            $sign .= $key . $params[$key];
+            if ($params[$key]) {
+                $sign .= $key . $params[$key];
+            }
         }
         return sha1($sign);
     }
