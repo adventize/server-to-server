@@ -107,23 +107,35 @@ The response is in the JSON format. The successful response will have code 200.
               "offer_description": "Install and run",
               "name": "Offer #1",
               "url": "http://api.adventize.com:80/click/?url=620c672db559444c5a232b62f4rth",
-              "icon": "http://icons.adventize.com/cache/aeaa0c4b8cc857771bd4acfc06ec62b.png"
+              "icon": "http://icons.adventize.com/cache/aeaa0c4b8cc857771bd4acfc06ec62b.png",
+              "is_free": true,
+              "is_stimulated": true,
+              "bid": 1.00,
+              "currency": "USD"
           },{ "offer_id": "848wcwtg8976ba419f8632e3dbe63d19erwd",
               "offer_description": "Install and run",
               "name": "Offer #2",
               "url": "http://api.adventize.com:80/click/?url=6f52135c8488976ba419f8632e3dv",
-              "icon": "http://icons.adventize.com/cache/ec5aeb08fc71a826bca05cc7d06f521.png"
+              "icon": "http://icons.adventize.com/cache/ec5aeb08fc71a826bca05cc7d06f521.png",
+              "is_free": true,
+              "is_stimulated": true,
+              "bid": 1.42,
+              "currency": "USD"
           }, ...
         ]
     }
 
 Field name         |Description
 :------------------|:----------
-`offer_id`         |Offer identification
-`offer_description`|Offer description
-`name`             |Offer's title
-`url`              |Link to the advertised entity. If the entity is an application, then this will be a link to the application page in the store
-`icon`             |Link to the advertised entity icon
+`offer_id`         |Offer identification. Type: `string`
+`offer_description`|Offer description. Type: `string`
+`name`             |Offer's title. Type: `string`
+`url`              |Link to the advertised entity. If the entity is an application, then this will be a link to the application page in the store. Type: `string`
+`icon`             |Link to the advertised entity icon. Type: `string`
+`is_free`          |Determines if the offer is free or not. Type: `boolean` (true/false)
+`is_stimulated`    |Determines if the stimulation is available for this offer. Type: `boolean` (true/false)
+`bid`              |Offer lead cost (install/click/other). Type: `double`
+`currency`         |Offer cost currency according to ISO 4217 standard. ex.: "USD". Type: `string`
 
 Accordingly, if there is no advertisement to show, the server will response with:
 
